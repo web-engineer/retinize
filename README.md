@@ -1,5 +1,5 @@
-retinize
-========
+Retinize simple pixel density tools
+===================================
 
 script based high pixel density support tools.
 
@@ -9,14 +9,14 @@ To use this script we recommend including the compressed file (used in the demo)
 Once included you then need to tell the script the densities you want to
 support and the names of the corresponding style sheets.
 
-<code>
+'''html
 <script src="retinize.js" type="text/javascript"></script>
 <script type="text/javascript">
 	<!--
 	Retinize.support(2,'rt-highrez.css');
 	//-->
 </script>
-</code>
+'''
 
 
 **Project structure**
