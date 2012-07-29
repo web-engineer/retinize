@@ -1,4 +1,5 @@
-/* 
+/**
+* @license
 * Retinize by web-engineer - http://www.web-engineer.co.uk	
 * This work is licensed under a Creative Commons Attribution 3.0 Unported License.
 * 
@@ -88,10 +89,4 @@ var Retinize = {
 			// add the density to the supported array
 		}
 	}
-}
-// to enable add the following line to suit your sites settings
-// this can be in your HTML or you can configure site wide from here
-// add a line per density you wish to support
-// make sure you include these in order of increasing size if uspporting 
-// multiple densities
-// Retinize.support(2,'rt-highrez');
+};
