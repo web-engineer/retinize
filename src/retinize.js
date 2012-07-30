@@ -12,22 +12,24 @@
 * limitations under the License.
 */
 var Retinize = {
-	Version: '0.0.1',
-	// scales come from uri - no need to store
+	Version: '0.0.2',
 	supported:[],
 	isSupported:null,
 	density:null,
 	/**
-	* @param src:String path to image
-	* @param width:Number at density of 1
-	* @param height:Number at density of 1 
-	* @param alt:String alternate text (defaults to '')
-	*/
-	get:function(src, width, height, alt){
+	 * will write out an <img/> tag with high density image link if supported
+	 * note - the naming convention for images is 
+	 * [YOURFILE]-x[DENSITY].[EXTENSION]
+	 * e.g. my.png will be converted to my-x2.png at double density
+	 * @param src:String path to image
+	 * @param width:Number at density of 1
+	 * @param height:Number at density of 1 
+	 * @param attributes:Object aditional attributes (optional)
+	 */
+	get:function(src, width, height, attributes){
 		//check pixel density
 		var img = '<img ';
 		if(!Retinize.density) Retinize.density = (window.devicePixelRatio === undefined) ? 1 : window.devicePixelRatio;
-		if(!alt) alt = '';
 		//which scale factor, the nearest or next heighest density available
 		var sf = 1;
 		if(Retinize.supported.length>1){
@@ -47,9 +49,14 @@ var Retinize = {
 		}
 		if(sf>1){
 			src = src.replace(/(.*)\.(gif|jpg|jpeg|png)/i,'$1-x'+sf+'.$2');
+			alert(src);
 		}
 		img+='src="'+src+'" ';
-		img+='alt="'+alt+'" ';
+		if(typeof attributes == "object"){
+			for(var prop in attributes){
+				img+=prop+'="'+attributes[prop]+'" ';
+			}
+		}
 		img+='width="'+width+'" ';
 		img+='height="'+height+'" ';
 		img += ' />';

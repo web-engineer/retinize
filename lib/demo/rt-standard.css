@@ -3,8 +3,7 @@
     Created on : 27-Jul-2012, 12:49:08
     Author     : Craig Lawson - http://www.web-engineer.co.uk*/
 body{
-	font-family: 'Cabin Sketch', sans-serif;
-	font-size: 110%;
+	font-family: sans-serif;
 	background: black;
 	color:white;
 }
@@ -15,7 +14,9 @@ a:hover{
 	color:#eeeeff;
 }
 h1{
+	font-family: 'Cabin Sketch', sans-serif;
 	text-rendering: optimizeLegibility;
+	font-size: 300%;
 }
 .guess-who { 
     background: url('guess-who.png');

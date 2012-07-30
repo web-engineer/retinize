@@ -23,6 +23,36 @@ to support and their related style sheets.
 </script>
 ```
 
+You can use this script to automatically swith regular images to high density 
+ones when possible using the following method -
+
+```html
+<script type="text/javascript">
+<!--
+Retinize.get('somefile.png', 128, 137);
+//--></script>
+<noscript><img src="somefile.png"/></noscript>
+```
+
+note - the naming convention for images is 
+[YOURFILE]-x[DENSITY].[EXTENSION]
+e.g. in the example above the double density version of **somefile.png** should 
+be named **somefile-x2.png** on the server
+
+Note - there is an optional fourth argument to Retinize.get, this can carry an
+object containing any extra attributes you want to assign to your image.
+For example to float an image right and to add alternate text you would write -
+
+```html
+<script type="text/javascript">
+<!--
+Retinize.get('somefile.png', 128, 137,{style:'float:right',alt:'some file'});
+//--></script>
+<noscript><img src="somefile.png" style="float:right" alt="some file"/></noscript>
+```
+
+
+
 **Project structure**
 
 *lib/demo/*

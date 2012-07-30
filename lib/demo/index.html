@@ -3,7 +3,7 @@
     <head>
 		<meta name = "viewport" content = "user-scalable = yes, maximum-scale = 1, initial-scale = 1">
         <title>Retinize JS Demonstration</title>
-		<link href='http://fonts.googleapis.com/css?family=Cabin+Sketch:400,700' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Cabin+Sketch:700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="rt-standard.css" />
 		<script src="retinize.js" type="text/javascript"></script>
 		<script type="text/javascript">
@@ -13,8 +13,13 @@
 		</script>
     </head>
     <body style="border-top:5px solid #FF9900; margin: 0; padding:0">
-		<div style="max-width: 640px; margin: 10px 5px 50px 10px">
-		<h1>High pixel density display test</h1>
+		<script type="text/javascript">
+		<!--
+		Retinize.get('http://codex.web-engineer.co.uk/example/highdpi/vertical-logo.png', 63, 350,{style:'float:right'});
+		//--></script>
+		<noscript><img src="http://codex.web-engineer.co.uk/example/highdpi/logo.png"/></noscript>
+		<div style="max-width: 640px; margin: 0px 10px 50px 5px">
+		<h1 style="margin:5px 0">High pixel density display test</h1>
 		<p>This page demonstrates a simple but effective way to handle using &quot;high pixel density&quot; images in your pages. It uses the <a href="https://github.com/web-engineer/retinize">retinize.js</a> and provides test cases for unit testing on different devices/browsers.</p>
         <p>The first column contains reference images. The first row shows a div with background image (sprite technique), the second row shows standard image tags. The images on the right will be displayed at twice the density on supported devices with a high pixel density, such as new iPad, iPhone4, Galaxy S3.</p>
 		<table border="0" cellpadding="2" cellspacing="3" style="background-color: #666666; color:#aaaaaa" width="273">
