@@ -49,7 +49,6 @@ var Retinize = {
 		}
 		if(sf>1){
 			src = src.replace(/(.*)\.(gif|jpg|jpeg|png)/i,'$1-x'+sf+'.$2');
-			alert(src);
 		}
 		img+='src="'+src+'" ';
 		if(typeof attributes == "object"){
