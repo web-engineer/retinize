@@ -3,7 +3,7 @@
     <head>
 		<meta name = "viewport" content = "user-scalable = yes, maximum-scale = 1, initial-scale = 1">
         <title>Retinize JS Demonstration</title>
-		<link href='http://fonts.googleapis.com/css?family=Karla:400,700' rel='stylesheet' type='text/css' />
+		<link href='http://fonts.googleapis.com/css?family=Cabin+Sketch:400,700' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="rt-standard.css" />
 		<script src="retinize.js" type="text/javascript"></script>
 		<script type="text/javascript">
@@ -12,10 +12,11 @@
 			//-->
 		</script>
     </head>
-    <body>
+    <body style="border-top:5px solid #FF9900; margin: 0; padding:0">
+		<div style="max-width: 640px; margin: 10px 5px 50px 10px">
 		<h1>High pixel density display test</h1>
         <p>The first column is a reference for the standard images. The first row uses the sprite technique, the second row are standard images. The images on the right will be displayed at twice the density on supported devices with a high pixel density, such as new iPad, iPhone4, Galaxy S3.</p>
-		<table border="0" cellpadding="2" cellspacing="3" style="background-color: #666666; color:#aaaaaa">
+		<table border="0" cellpadding="2" cellspacing="3" style="background-color: #666666; color:#aaaaaa" width="273">
 			<thead><th>Low</th><th>High</th></thead>
 			<tr>
 				<td><div class="guess-who"><br/></div></td>
@@ -33,10 +34,14 @@
 					<noscript><img src="guess-who.png"/></noscript>
 				</td>
 			</tr>
+			<tr>
+				<td colspan="2" style="text-align: center; padding: 10px; background-color: #444444">For those on regular displays wondering what the fuss is about, here's a preview<br/><img src="non-ret-comparison.png"/></td>
+			</tr>
 		</table>
 		<br clear="left"/>
 		<p>This content will gracefully degrade on un-supported devices, it will not download any extra content. We believe this is the most effective and simple way to handle the issue of retina graphics.</p>
 		<p>If you find a bug or think something can be improved then why not <a href="https://github.com/web-engineer/retinize">fork this project on Github</a> and make a pull request...</p>
 		<a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
+		</div>
     </body>
 </html>

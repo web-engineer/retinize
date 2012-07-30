@@ -3,7 +3,16 @@
     Created on : 27-Jul-2012, 12:49:08
     Author     : Craig Lawson - http://www.web-engineer.co.uk*/
 body{
-	font-family: 'Karla', sans-serif;
+	font-family: 'Cabin Sketch', sans-serif;
+	font-size: 110%;
+	background: black;
+	color:white;
+}
+a{
+	color:#aaaaff;
+}
+a:hover{
+	color:#eeeeff;
 }
 h1{
 	text-rendering: optimizeLegibility;

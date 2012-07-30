@@ -4,15 +4,15 @@ Retinize simple pixel density tools
 script based high pixel density support tools.
 
 Example of use can be viewed here - 
-http://codex.web-engineer.co.uk/examples/retinize/
+http://codex.web-engineer.co.uk/example/highdpi/
 
-To use this script we recommend including the current release from the downloads
-pags - https://github.com/web-engineer/retinize/downloads
+To use this script we recommend using the current compressed release 
+https://github.com/web-engineer/retinize/downloads
 
-After your standard CSS link in the <head> part of your document you will need
-to include a link to "Retinize" as follows. Note the "Retinize.support" line is 
-where you can specify the pixel densities you wish to support and their 
-related style sheets. 
+After you include your standard CSS link in the <head> part of your document 
+you will need to include a link to "Retinize" as follows. Note the 
+"Retinize.support" line is where you can specify the pixel densities you wish 
+to support and their related style sheets. 
 
 ```html
 <script src="retinize.js" type="text/javascript"></script>
