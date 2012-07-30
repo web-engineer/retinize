@@ -61,3 +61,9 @@ of the retinize script, you should use this with your project.
 
 *src*
 The source code, commented.
+
+**Get involved**
+
+Pull requests and bug reports welcome.
+You can also email us on support[at]web-engineer.co.uk with 
+any feedback and suggestions.
