@@ -23,7 +23,7 @@ to support and their related style sheets.
 </script>
 ```
 
-You can use this script to automatically swith regular images to high density 
+You can use this script to automatically switch regular images to high density 
 ones when possible using the following method -
 
 ```html
