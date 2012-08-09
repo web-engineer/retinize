@@ -69,7 +69,6 @@ var Retinize = {
 	support:function(density,css){
 		//check supported status
 		if(typeof Retinize.isSupported!="boolean"){
-			console.info('setting support');
 			var rv = -1; // Return value assumes good browser.
 			// IE8 or earlier we will not support 
 			if (navigator.appName == 'Microsoft Internet Explorer'){
