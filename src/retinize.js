@@ -76,15 +76,12 @@ var Retinize = {
 				var ua = navigator.userAgent;
 				var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
 				if (re.exec(ua) != null) rv = parseFloat( RegExp.$1 );
-				console.info('ie check');
 				Retinize.isSupported = rv>8;
 			}else{
-				console.info('good');
 				Retinize.isSupported = true;
 			}
 		}
 		if(Retinize.isSupported === true){
-			console.info('adding sheet...');
 			var sheet = document.createElement('link');
 			sheet.rel = 'stylesheet';
 			sheet.media = 'only screen and (min-resolution: '+density+'dppx), only screen and (min--moz-device-pixel-ratio: '+density+'), only screen and (-o-min-device-pixel-ratio: '+density+'/1), only screen and (-webkit-min-device-pixel-ratio: '+density+'), only screen and (min-device-pixel-ratio: '+density+')';
