@@ -12,7 +12,7 @@
 * limitations under the License.
 */
 var Retinize = {
-	Version: '0.0.2',
+	Version: '0.1.0',
 	supported:[],
 	isSupported:null,
 	density:null,
@@ -186,7 +186,10 @@ var Retinize = {
 		//again as we want to preserve any other programatic change that alters
 		//the body class - i.e. play nice!
 		if (before === document.body.className){
-			document.body.className = classFinal.join(' ');
+			var now = classFinal.join(' ');
+			if(now!==before){
+				document.body.className = now;
+			}
 		}else{
 			// try again... assume we're colided with something else manipulating
 			// the bosy class

@@ -18,6 +18,11 @@ h1{
 	text-rendering: optimizeLegibility;
 	font-size: 300%;
 }
+h2{
+	font-family: 'Cabin Sketch', sans-serif;
+	text-rendering: optimizeLegibility;
+	font-size: 200%;
+}
 .guess-who { 
     background: url('guess-who.png');
 	width: 128px;
@@ -34,8 +39,22 @@ responsive support
 */
 
 .ss_mobile{
-	background: green;
+	background: url('max-500.png') black;
+	background-attachment:fixed;
+	background-position:center 0; 
+	background-repeat: no-repeat;
+	background-size: 500px 119px;
 }
 .ss_xlarge{
-	background: red;
+	background: url('min-1024.png') black;
+	background-attachment:fixed;
+	background-position:center 0; 
+	background-repeat: no-repeat;
+	background-size: 1024px 238px;
+}
+.ss_xlarge h1{
+	padding-top:200px;
+}
+.ss_mobile h1{
+	padding-top:80px;
 }

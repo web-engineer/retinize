@@ -22,8 +22,8 @@
 		</script>
 		<noscript><img src="http://codex.web-engineer.co.uk/example/highdpi/logo.png"/></noscript>
 		<div style="max-width: 640px; margin: 0px 10px 50px 5px">
-		<h1 style="margin:5px 0">High pixel density display test</h1>
-		<p>This page demonstrates a simple but effective way to handle using &quot;high pixel density&quot; images in your pages. It uses the <a href="https://github.com/web-engineer/retinize">retinize.js</a> and provides test cases for unit testing on different devices/browsers.</p>
+		<h1 style="margin:5px 0">Retinize test page</h1>
+		<p>This test page demonstrates how the Retinize script can improve device support including making the page responsive in older browsers add adding support for &quot;high pixel density&quot; images. It uses the <a href="https://github.com/web-engineer/retinize/tree/responsive">retinize.js</a> and provides test cases for unit testing on different devices/browsers.</p>
         <p>The first column contains reference images. The first row shows a div with background image (sprite technique), the second row shows standard image tags. The images on the right will be displayed at twice the density on supported devices with a high pixel density, such as new iPad, iPhone4, Galaxy S3.</p>
 		<table border="0" cellpadding="2" cellspacing="3" style="background-color: #666666; color:#aaaaaa" width="273">
 			<thead><th>Low</th><th>High</th></thead>
@@ -48,8 +48,12 @@
 			</tr>
 		</table>
 		<br clear="left"/>
-		<p>This content will gracefully degrade on un-supported devices, it will not download any extra content. We believe this is the most effective and simple way to handle the issue of retina graphics.</p>
-		<p>If you find a bug or think something can be improved then why not <a href="https://github.com/web-engineer/retinize">visit the project page on Github</a>, pull requests and bug reports welcome, alternatively email us on support[at]web-engineer.co.uk.</p>
+		<h2 style="margin:5px 0">Responsive support</h2>
+		<p>The goals of the Retinize script is to make it easy to support multiple devices and screen formats, to this end we have updated the to support different device profiles, this means if your browser does not support media queries it will still follow the rules... If you size the browser smaller than 500px or larger than 1024px this page should update with a dimension arrow at the top. This page will also use different high density arrows when viewed on retina displays.</p>
+		<h2>Support info</h2>
+		<p>This content will gracefully degrade on un-supported devices, it will not download any extra content. We believe this is the most effective and simple way to handle the issue of supporting multiple device formats.</p>
+		<p>The script requires no third party scripts, is completely self contained and very small indeed (2.87Kb compiled, without compression). We've tried to keep this as simple as possible enabling the developer the freedom of deciding which devices and densities they wish to support.</p>
+		<p>If you find a bug or think something can be improved then why not <a href="https://github.com/web-engineer/retinize/tree/responsive">visit the project page on Github</a>, pull requests and bug reports welcome, alternatively email us on support[at]web-engineer.co.uk.</p>
 		<a rel="license" href="http://creativecommons.org/licenses/by/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
 		</div>
     </body>
