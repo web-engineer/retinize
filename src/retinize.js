@@ -119,7 +119,7 @@ var Retinize = {
 	  * @returns void
 	  */
 	 addDeviceSupport:function(css_class,min_width,max_width){
-		 Retinize.supportedLayouts.push({class:css_class,min:min_width,max:max_width});
+		 Retinize.supportedLayouts.push({klass:css_class,min:min_width,max:max_width});
 	},
 	onResize:function(){
 
@@ -142,9 +142,9 @@ var Retinize = {
 			//add to the add/remove list
 			if(Retinze.supportedLayouts[i].min>=Retinize.width && (Retinize.supportedLayouts[i].max===0 || (Retinize.supportedLayouts[i].max<=Retinize.width))){
 				//in range
-				classAdd.push(Retinize.supportedLayouts[i].class);
+				classAdd.push(Retinize.supportedLayouts[i].klass);
 			}else{
-				classRemove.push(Retinize.supportedLayouts[i].class);
+				classRemove.push(Retinize.supportedLayouts[i].klass);
 			}
 		}
 		var classFinal = [];
