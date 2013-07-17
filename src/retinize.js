@@ -16,6 +16,12 @@ var Retinize = {
 	supported:[],
 	isSupported:null,
 	density:null,
+	//container for supported responsive layouts
+	supportedLayouts:[],
+	//the default layout
+	currentLayout:'',
+	//the current browser width (0 if unchecked)
+	width:0,
 	/**
 	 * will write out an <img/> tag with high density image link if supported
 	 * note - the naming convention for images is 
@@ -43,7 +49,7 @@ var Retinize = {
 		}else{
 			// only use this density if were within a reasonable multiple 
 			// of the available density, prevents excessive bandwidth use
-			if(Math.floor(Retinize.supported[0])==Math.ceil(Math.round(Retinize.density))){
+			if(Math.floor(Retinize.supported[0])===Math.ceil(Math.round(Retinize.density))){
 				sf = Retinize.supported[0];
 			}
 		}
@@ -51,7 +57,7 @@ var Retinize = {
 			src = src.replace(/(.*)\.(gif|jpg|jpeg|png)/i,'$1-x'+sf+'.$2');
 		}
 		img+='src="'+src+'" ';
-		if(typeof attributes == "object"){
+		if(typeof attributes === "object"){
 			for(var prop in attributes){
 				img+=prop+'="'+attributes[prop]+'" ';
 			}
@@ -68,13 +74,13 @@ var Retinize = {
 	 */
 	support:function(density,css){
 		//check supported status
-		if(typeof Retinize.isSupported!="boolean"){
+		if(typeof Retinize.isSupported!=="boolean"){
 			var rv = -1; // Return value assumes good browser.
 			// IE8 or earlier we will not support 
-			if (navigator.appName == 'Microsoft Internet Explorer'){
+			if (navigator.appName === 'Microsoft Internet Explorer'){
 				var ua = navigator.userAgent;
 				var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
-				if (re.exec(ua) != null) rv = parseFloat( RegExp.$1 );
+				if (re.exec(ua) !== null) rv = parseFloat( RegExp.$1 );
 				Retinize.isSupported = rv>8;
 			}else{
 				Retinize.isSupported = true;
@@ -90,5 +96,85 @@ var Retinize = {
 			Retinize.supported.push(density);
 			// add the density to the supported array
 		}
+	},
+	 /**
+	  * responsive layout support
+	  * to use simply set your suported layouts, you will need to add the
+	  * following attributes to your body tag -
+	  * 
+	  * to support oriantation change -
+	  * > onorientationchange="Retinize.onResize()" 
+	  * 
+	  * to support browser size changes -
+	  * > onresize="Retinize.onResize()" 
+	  * 
+	  * to make sure the page gets the right layout initially - you could also
+	  * use scripted events or run inline before the </body> but after the
+	  * Retinize.addDeviceSupport calls have been made.
+	  * > onload="Retinize.onResize()"
+	  * 
+	  * @param String css_class
+	  * @param Number min_width in standard pixels set to 0 if no min
+	  * @param Number max_width in standard pixels set to 0 if no max
+	  * @returns void
+	  */
+	 addDeviceSupport:function(css_class,min_width,max_width){
+		 Retinize.supportedLayouts.push({class:css_class,min:min_width,max:max_width});
+	},
+	onResize:function(){
+
+		Retinize.width = window,d=document,e=d.documentElement,g=d.getElementsByTagName('body')[0],x=w.innerWidth||e.clientWidth||g.clientWidth,y=w.innerHeight||e.clientHeight||g.clientHeight;
+		//first - make a list of the formats we are responsible for - 
+		//these classes will be removed/applied to the document body acording to
+		//the min/max settings
+		var cclass = document.body.className.split(' ');
+		// sanitise the current classes
+		var sclass = [];//santitised classes
+		for(var j=0; j<cclass.length; j++){
+			if(cclass[j]!==""){
+				sclass.push(cclass[j]);
+			}
+		}
+		var classAdd = [];
+		var classRemove = [];
+		for(var i=0; i<Retinze.supportedLayouts.length; i++){
+			//does the layout apply?
+			//add to the add/remove list
+			if(Retinze.supportedLayouts[i].min>=Retinize.width && (Retinize.supportedLayouts[i].max===0 || (Retinize.supportedLayouts[i].max<=Retinize.width))){
+				//in range
+				classAdd.push(Retinize.supportedLayouts[i].class);
+			}else{
+				classRemove.push(Retinize.supportedLayouts[i].class);
+			}
+		}
+		var classFinal = [];
+		//itterate ovr the sclass array and remove unwanted, add needed if 
+		for(var k=0; k<sclass.length; k++){
+			//are we in?
+			var unknown = true;
+			for(var l=0; l<classAdd.length; l++){
+				if(classAdd[l]===sclass[l]){
+					unknown = false;
+					break;
+				}
+			}
+			//are we out?
+			for(var l=0; l<classRemove.length; l++){
+				if(classAdd[l]===sclass[l]){
+					unknown = false;
+					break;
+				}
+			}
+			if(unknown){
+				classFinal.push(sclass[l]);
+			}
+		}
+		//finally add the known requried classes
+		for(var m=0; m<classAdd.length; m++){
+			classFinal.push(classAdd[m]);
+		}
+		//and set
+		document.body.className = classFinal.join(' ');
 	}
+	 
 };
