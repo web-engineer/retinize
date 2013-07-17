@@ -30,9 +30,8 @@ ones when possible using the following method -
 
 ```html
 <script type="text/javascript">
-<!--
 Retinize.get('somefile.png', 128, 137);
-//--></script>
+</script>
 <noscript><img src="somefile.png"/></noscript>
 ```
 
@@ -51,6 +50,7 @@ Retinize.get('somefile.png', 128, 137,{style:'float:right',alt:'some file'});
 </script>
 <noscript><img src="somefile.png" style="float:right" alt="some file"/></noscript>
 ```
+
 An alternative to media queries - this script also provides support for multiple 
 devices. When you add device support Retinize will automatically augment the
 css class you specify when the browser is used at the scales you define.
@@ -61,12 +61,13 @@ css clas, the minumum dimension and maximum dimension that this class will handl
 
 If you set min or max to 0 that constraint will be ignored - for instance -
 
-
+```html
 <script type="text/javascript">
 Retinize.addDeviceSupport("ss_mobile",0,500);
 Retinize.addDeviceSupport("ss_xlarge",1024,0);
 Retinize.onResize();
 </script>
+```
 
 Will use ss_mobile when the screen is smaller than or equel to 500 pixels wide.
 Will use ss_xlarge when the screen is larger or equel to 1024 px wide.
