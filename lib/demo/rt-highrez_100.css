@@ -9,6 +9,6 @@ IE 8 will try and read this sheet, this makes the sheet compatable with IE8
 @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2), (min--moz-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 2/1), (min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
 	.guess-who-x2 { 
 		background: url('guess-who-x2.png');
-		background-size: 100%;
+		background-size: 128px 137px;
 	}
 }
