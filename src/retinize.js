@@ -108,10 +108,17 @@ var Retinize = {
 	  * to support browser size changes -
 	  * > onresize="Retinize.onResize()" 
 	  * 
-	  * to make sure the page gets the right layout initially - you could also
-	  * use scripted events or run inline before the </body> but after the
+	  * to make sure the page gets the right layout initially - this should be
+	  * before the </body> but after the opening <body> tag since this is the
+	  * part of the dom the functions will modify.
+	  * 
 	  * Retinize.addDeviceSupport calls have been made.
-	  * > onload="Retinize.onResize()"
+	  * 
+	  * e.g.
+	  * 
+	  * Retinize.addDeviceSupport("ss_mobile",0,320);
+	  * Retinize.addDeviceSupport("ss_xlarge",1024,0);
+	  * Retinize.onResize();
 	  * 
 	  * @param String css_class
 	  * @param Number min_width in standard pixels set to 0 if no min
@@ -122,12 +129,13 @@ var Retinize = {
 		 Retinize.supportedLayouts.push({klass:css_class,min:min_width,max:max_width});
 	},
 	onResize:function(){
-
-		Retinize.width = window,d=document,e=d.documentElement,g=d.getElementsByTagName('body')[0],x=w.innerWidth||e.clientWidth||g.clientWidth,y=w.innerHeight||e.clientHeight||g.clientHeight;
+		var w = window,d=document,e=d.documentElement,g=d.getElementsByTagName('body')[0],x=w.innerWidth||e.clientWidth||g.clientWidth,y=w.innerHeight||e.clientHeight||g.clientHeight;
+		Retinize.width = x;
 		//first - make a list of the formats we are responsible for - 
 		//these classes will be removed/applied to the document body acording to
 		//the min/max settings
-		var cclass = document.body.className.split(' ');
+		var before = document.body.className;
+		var cclass = before.split(' ');
 		// sanitise the current classes
 		var sclass = [];//santitised classes
 		for(var j=0; j<cclass.length; j++){
@@ -137,10 +145,10 @@ var Retinize = {
 		}
 		var classAdd = [];
 		var classRemove = [];
-		for(var i=0; i<Retinze.supportedLayouts.length; i++){
+		for(var i=0; i<Retinize.supportedLayouts.length; i++){
 			//does the layout apply?
 			//add to the add/remove list
-			if(Retinze.supportedLayouts[i].min>=Retinize.width && (Retinize.supportedLayouts[i].max===0 || (Retinize.supportedLayouts[i].max<=Retinize.width))){
+			if(Retinize.width >= Retinize.supportedLayouts[i].min && (Retinize.supportedLayouts[i].max===0 || (Retinize.width<=Retinize.supportedLayouts[i].max))){
 				//in range
 				classAdd.push(Retinize.supportedLayouts[i].klass);
 			}else{
@@ -173,8 +181,19 @@ var Retinize = {
 		for(var m=0; m<classAdd.length; m++){
 			classFinal.push(classAdd[m]);
 		}
-		//and set
-		document.body.className = classFinal.join(' ');
+		//jsut in case - lets make sure the class is as it was at the start, 
+		//else something else could have changed it and we will need to try 
+		//again as we want to preserve any other programatic change that alters
+		//the body class - i.e. play nice!
+		if (before === document.body.className){
+			document.body.className = classFinal.join(' ');
+		}else{
+			// try again... assume we're colided with something else manipulating
+			// the bosy class
+			// todo - put a recursion check in here incase something bad is
+			// happening, or use setTimeout to delay a few hundreths.
+			Retinize.onResize();
+		}
 	}
 	 
 };

@@ -28,3 +28,14 @@ h1{
 	width: 128px;
 	height: 137px;
 }
+
+/*
+responsive support
+*/
+
+.ss_mobile{
+	background: green;
+}
+.ss_xlarge{
+	background: red;
+}

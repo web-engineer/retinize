@@ -12,11 +12,14 @@
 			//-->
 		</script>
     </head>
-    <body style="border-top:5px solid #FF9900; margin: 0; padding:0">
+    <body style="border-top:5px solid #FF9900; margin: 0; padding:0" onorientationchange="Retinize.onResize()" onresize="Retinize.onResize()">
 		<script type="text/javascript">
-		<!--
+		// add responsive support
+		Retinize.addDeviceSupport("ss_mobile",0,500);
+		Retinize.addDeviceSupport("ss_xlarge",1024,0);
+		Retinize.onResize();
 		Retinize.get('http://codex.web-engineer.co.uk/example/highdpi/vertical-logo.png', 63, 350,{style:'float:right'});
-		//--></script>
+		</script>
 		<noscript><img src="http://codex.web-engineer.co.uk/example/highdpi/logo.png"/></noscript>
 		<div style="max-width: 640px; margin: 0px 10px 50px 5px">
 		<h1 style="margin:5px 0">High pixel density display test</h1>
