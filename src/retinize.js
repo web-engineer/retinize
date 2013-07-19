@@ -128,74 +128,80 @@ var Retinize = {
 	 addDeviceSupport:function(css_class,min_width,max_width){
 		 Retinize.supportedLayouts.push({klass:css_class,min:min_width,max:max_width});
 	},
+	_working:false,
 	onResize:function(){
-		var w = window,d=document,e=d.documentElement,g=d.getElementsByTagName('body')[0],x=w.innerWidth||e.clientWidth||g.clientWidth,y=w.innerHeight||e.clientHeight||g.clientHeight;
-		Retinize.width = x;
-		//first - make a list of the formats we are responsible for - 
-		//these classes will be removed/applied to the document body acording to
-		//the min/max settings
-		var before = document.body.className;
-		var cclass = before.split(' ');
-		// sanitise the current classes
-		var sclass = [];//santitised classes
-		for(var j=0; j<cclass.length; j++){
-			if(cclass[j]!==""){
-				sclass.push(cclass[j]);
+		if(!Retinize._working){
+			Retinize._working = true;
+			var w = window,d=document,e=d.documentElement,g=d.getElementsByTagName('body')[0],x=w.innerWidth||e.clientWidth||g.clientWidth,y=w.innerHeight||e.clientHeight||g.clientHeight;
+			Retinize.width = x;
+			//first - make a list of the formats we are responsible for - 
+			//these classes will be removed/applied to the document body acording to
+			//the min/max settings
+			var before = document.body.className;
+			var cclass = before.split(' ');
+			// sanitise the current classes
+			var sclass = [];//santitised classes
+			for(var j=0; j<cclass.length; j++){
+				if(cclass[j]!==""){
+					sclass.push(cclass[j]);
+				}
 			}
-		}
-		var classAdd = [];
-		var classRemove = [];
-		for(var i=0; i<Retinize.supportedLayouts.length; i++){
-			//does the layout apply?
-			//add to the add/remove list
-			if(Retinize.width >= Retinize.supportedLayouts[i].min && (Retinize.supportedLayouts[i].max===0 || (Retinize.width<=Retinize.supportedLayouts[i].max))){
-				//in range
-				classAdd.push(Retinize.supportedLayouts[i].klass);
+			var classAdd = [];
+			var classRemove = [];
+			for(var i=0; i<Retinize.supportedLayouts.length; i++){
+				//does the layout apply?
+				//add to the add/remove list
+				if(Retinize.width >= Retinize.supportedLayouts[i].min && (Retinize.supportedLayouts[i].max===0 || (Retinize.width<=Retinize.supportedLayouts[i].max))){
+					//in range
+					classAdd.push(Retinize.supportedLayouts[i].klass);
+				}else{
+					classRemove.push(Retinize.supportedLayouts[i].klass);
+				}
+			}
+			var classFinal = [];
+			//itterate ovr the sclass array and remove unwanted, add needed if 
+			for(var k=0; k<sclass.length; k++){
+				//are we in?
+				var unknown = true;
+				for(var l=0; l<classAdd.length; l++){
+					if(classAdd[l]===sclass[l]){
+						unknown = false;
+						break;
+					}
+				}
+				//are we out?
+				for(var l=0; l<classRemove.length; l++){
+					if(classAdd[l]===sclass[l]){
+						unknown = false;
+						break;
+					}
+				}
+				if(unknown){
+					classFinal.push(sclass[l]);
+				}
+			}
+			//finally add the known requried classes
+			for(var m=0; m<classAdd.length; m++){
+				classFinal.push(classAdd[m]);
+			}
+			//jsut in case - lets make sure the class is as it was at the start, 
+			//else something else could have changed it and we will need to try 
+			//again as we want to preserve any other programatic change that alters
+			//the body class - i.e. play nice!
+			if (before === document.body.className){
+				var now = classFinal.join(' ');
+				if(now!==before){
+					document.body.className = now;
+				}
+				Retinize._working = false;
 			}else{
-				classRemove.push(Retinize.supportedLayouts[i].klass);
+				// try again... assume we're colided with something else manipulating
+				// the bosy class
+				// todo - put a recursion check in here incase something bad is
+				// happening, or use setTimeout to delay a few hundreths.
+				Retinize._working = false;
+				Retinize.onResize();
 			}
-		}
-		var classFinal = [];
-		//itterate ovr the sclass array and remove unwanted, add needed if 
-		for(var k=0; k<sclass.length; k++){
-			//are we in?
-			var unknown = true;
-			for(var l=0; l<classAdd.length; l++){
-				if(classAdd[l]===sclass[l]){
-					unknown = false;
-					break;
-				}
-			}
-			//are we out?
-			for(var l=0; l<classRemove.length; l++){
-				if(classAdd[l]===sclass[l]){
-					unknown = false;
-					break;
-				}
-			}
-			if(unknown){
-				classFinal.push(sclass[l]);
-			}
-		}
-		//finally add the known requried classes
-		for(var m=0; m<classAdd.length; m++){
-			classFinal.push(classAdd[m]);
-		}
-		//jsut in case - lets make sure the class is as it was at the start, 
-		//else something else could have changed it and we will need to try 
-		//again as we want to preserve any other programatic change that alters
-		//the body class - i.e. play nice!
-		if (before === document.body.className){
-			var now = classFinal.join(' ');
-			if(now!==before){
-				document.body.className = now;
-			}
-		}else{
-			// try again... assume we're colided with something else manipulating
-			// the bosy class
-			// todo - put a recursion check in here incase something bad is
-			// happening, or use setTimeout to delay a few hundreths.
-			Retinize.onResize();
 		}
 	}
 	 
