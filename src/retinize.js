@@ -129,6 +129,8 @@ var Retinize = {
 		 Retinize.supportedLayouts.push({klass:css_class,min:min_width,max:max_width});
 	},
 	_working:false,
+	_timer:false,
+	_nextclass:'',
 	onResize:function(){
 		if(!Retinize._working){
 			Retinize._working = true;
@@ -191,7 +193,14 @@ var Retinize = {
 			if (before === document.body.className){
 				var now = classFinal.join(' ');
 				if(now!==before){
-					document.body.className = now;
+					if(Retinize._nextclass===""){
+						document.body.className = now;
+					}else{
+						Retinize._nextclass = now;
+						if(Retinize._timer)	clearTimeout(Retinize._timer);
+						Retinize._timer = setTimeout(Retinize._deferredUpdate,200);
+						//set timer...
+					}
 				}
 				Retinize._working = false;
 			}else{
@@ -202,6 +211,11 @@ var Retinize = {
 				Retinize._working = false;
 				Retinize.onResize();
 			}
+		}
+	},
+	_defferedUpdate:function(){
+		if(Retinize._nextclass!== document.body.className){
+			document.body.className = now;
 		}
 	}
 	 
