@@ -192,7 +192,7 @@ var Retinize = {
 			}
 		}else{
 			// try again... assume we're colided with something else manipulating
-			// the bosy class
+			// the body class
 			// todo - put a recursion check in here incase something bad is
 			// happening, or use setTimeout to delay a few hundreths.
 			Retinize.onResize();

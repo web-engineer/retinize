@@ -70,6 +70,7 @@ Retinize.onResize();
 ```
 
 Will use ss_mobile when the screen is smaller than or equel to 500 pixels wide.
+
 Will use ss_xlarge when the screen is larger or equel to 1024 px wide.
 
 
