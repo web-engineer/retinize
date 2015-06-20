@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 var Retinize = {
-	Version: '0.0.2',
+	Version: '0.0.3',
 	supported: [],
 	isSupported: null,
 	density: null,
